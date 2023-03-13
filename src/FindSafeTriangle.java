@@ -1,8 +1,38 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Scanner;
+
 public class FindSafeTriangle {
     public static HashMap<Double, double[][]> triangles = new HashMap<>();
+
+    public static ArrayList<double[]> readFile(String csvFile) throws IOException {
+
+        ArrayList<double[]> points = new ArrayList<>();
+        Scanner inputStream = null;
+
+
+        try{
+            inputStream = new Scanner(new FileInputStream(csvFile));
+            inputStream.nextLine();
+            while (inputStream.hasNextLine()){
+                String line = inputStream.nextLine();
+                String[] list = line.split(",");
+                double x_cor = Double.parseDouble(list[0]);
+                double y_cor = Double.parseDouble((list[1]));
+                double[] temp = new double[]{x_cor,y_cor};
+                points.add(temp);
+
+            }
+        }
+        catch (FileNotFoundException e){
+            System.exit(0);
+        }
+
+        return points;
+
+    }
 
     public static void findSafeTri(ArrayList<double[]> points ){
         double max_area = 0;
@@ -79,14 +109,14 @@ public class FindSafeTriangle {
         }
     }
 
-    public static void main(String[]args){
+    public static void main(String[]args) throws IOException {
         System.out.println("working...");
 
-//        double[] floatArr1 = new double[]{0.5,0.5};
-//        double[] floatArr2 = new double[]{1,3.5};
-//        double[] floatArr3 = new double[]{2,3};
-//        double[] floatArr4 = new double[]{3,4};
-//        double[] floatArr5 = new double[]{3,0.5};
+        double[] floatArr1 = new double[]{0.5,0.5};
+        double[] floatArr2 = new double[]{1,3.5};
+        double[] floatArr3 = new double[]{2,3};
+        double[] floatArr4 = new double[]{3,4};
+        double[] floatArr5 = new double[]{3,0.5};
 //
 //        ArrayList<double[]> test_array = new ArrayList<>();
 //        test_array.add(floatArr1);
@@ -95,11 +125,11 @@ public class FindSafeTriangle {
 //        test_array.add(floatArr4);
 //        test_array.add(floatArr5);
 
-        double[] floatArr1 = new double[]{1,1};
-        double[] floatArr2 = new double[]{2,2};
-        double[] floatArr3 = new double[]{3,3};
-        double[] floatArr4 = new double[]{4,4};
-        double[] floatArr5 = new double[]{5,5};
+//        double[] floatArr1 = new double[]{1,1};
+//        double[] floatArr2 = new double[]{2,2};
+//        double[] floatArr3 = new double[]{3,3};
+//        double[] floatArr4 = new double[]{4,4};
+//        double[] floatArr5 = new double[]{5,5};
 
         ArrayList<double[]> test_array = new ArrayList<>();
         test_array.add(floatArr1);
@@ -155,8 +185,14 @@ public class FindSafeTriangle {
 //            test_array.add(floatArr9);
 //            test_array.add(floatArr10);
 
+
+        ArrayList<double[]> temp = readFile("points10.csv");
         findSafeTri(test_array);
         printMap(triangles);
+
+//        for (int i =0; i < temp.size(); i++){
+//            System.out.println("x_cor: " + temp.get(i)[0] + " y_cor: " + temp.get(i)[1]);
+//        }
 
 
 
