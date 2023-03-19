@@ -5,7 +5,14 @@ import java.util.HashMap;
 import java.util.Set;
 
 public class FindSafeSurrounding {
+    public static void printPoints(double[] arr1, double[] arr2, double[] arr3){
+        System.out.println("close point 1: " + Arrays.toString(arr1));
+        System.out.println("close point 2: " + Arrays.toString(arr2));
+        System.out.println("close point 3: " + Arrays.toString(arr3));
+    }
+
     public static void findSafeSurr(ArrayList<double[]> points){
+        System.out.println("finding safe surrounding : ");
         double[] safe_point = points.get(0);
         double distance;
 
@@ -40,9 +47,8 @@ public class FindSafeSurrounding {
                 min_dist = all_distances.get(0);
             }
         }
-
-        System.out.println(Arrays.toString(close_point1));
-        System.out.println(Arrays.toString(close_point2));
+        System.out.println("close point 1: " + Arrays.toString(close_point1));
+        System.out.println("close point 2: " + Arrays.toString(close_point2) + "\n");
 
         // get other triangles that contain the close_points
         Collection<double[][]> values = FindSafeTriangle.triangles.values();
@@ -50,34 +56,50 @@ public class FindSafeSurrounding {
 
         int count = 0;
         for(int k=0; k<allValues.size(); k++){
-//            System.out.println("test");
             double[][] temp = allValues.get(k);
             double[] close_point3;
-            for(int i=0; i<temp.length; i++){
-                close_point3 = safe_point;
-                if((Arrays.equals(temp[0], close_point1) && Arrays.equals(temp[1], close_point2))){
-                    close_point3 = temp[2];
-                }
-                else if((Arrays.equals(temp[2], close_point2) && Arrays.equals(temp[1], close_point1))){
-                    close_point3 = temp[0];
-                }
-                else if((Arrays.equals(temp[0], close_point2) && Arrays.equals(temp[2], close_point1))){
-                    close_point3 = temp[1];
-                }
-                else if((Arrays.equals(temp[1], close_point2) && Arrays.equals(temp[2], close_point1))){
-                    close_point3 = temp[0];
-                }
-                else if((Arrays.equals(temp[2], close_point2) && Arrays.equals(temp[0], close_point1))){
-                    close_point3 = temp[1];
-                }
-                else if((Arrays.equals(temp[0], close_point2) && Arrays.equals(temp[1], close_point1))){
-                    close_point3 = temp[2];
-                }
-                if(close_point3 != safe_point){
-                    CalcArea.findEarthQuakeArea(close_point1[0],close_point1[1],close_point2[0],close_point2[1],close_point3[0],close_point3[1],safe_point[0],safe_point[1]);
-                    count++;
-                }
+//            System.out.println("temp array: " + Arrays.deepToString(temp));
+//            for(int i=0; i<temp.length; i++){
+            close_point3 = safe_point;
+            if((Arrays.equals(temp[0], close_point1) && Arrays.equals(temp[1], close_point2))){
+                close_point3 = temp[2];
+                printPoints(close_point1, close_point2, close_point3);
+//                System.out.println("case 1 \n");
             }
+            else if((Arrays.equals(temp[2], close_point2) && Arrays.equals(temp[1], close_point1))){
+                close_point3 = temp[0];
+                printPoints(close_point1, close_point2, close_point3);
+//                System.out.println("case 2 \n");
+            }
+            else if((Arrays.equals(temp[0], close_point2) && Arrays.equals(temp[2], close_point1))){
+                close_point3 = temp[1];
+                printPoints(close_point1, close_point2, close_point3);
+//                System.out.println("case 3 \n");
+            }
+            else if((Arrays.equals(temp[1], close_point2) && Arrays.equals(temp[2], close_point1))){
+                close_point3 = temp[0];
+                printPoints(close_point1, close_point2, close_point3);
+//                System.out.println("case 4 \n");
+            }
+            else if((Arrays.equals(temp[2], close_point2) && Arrays.equals(temp[0], close_point1))){
+                close_point3 = temp[1];
+                printPoints(close_point1, close_point2, close_point3);
+//                System.out.println("case 5 \n");
+            }
+            else if((Arrays.equals(temp[0], close_point2) && Arrays.equals(temp[1], close_point1))){
+                close_point3 = temp[2];
+                printPoints(close_point1, close_point2, close_point3);
+//                System.out.println("case 6 \n");
+            }
+            if(close_point3 != safe_point){
+                System.out.println("temp array: " + Arrays.deepToString(temp)+"\n");
+                CalcArea.findEarthQuakeArea(close_point1[0],close_point1[1],close_point2[0],close_point2[1],close_point3[0],close_point3[1],safe_point[0],safe_point[1]);
+                count++;
+            }
+//            else{
+//                System.out.println("skipped temp \n");
+//            }
+//            }
         }
         if(count == 0){
             System.out.println("warning: person is not located within any safe triangle");

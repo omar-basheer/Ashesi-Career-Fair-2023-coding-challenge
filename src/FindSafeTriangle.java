@@ -5,6 +5,7 @@ public class FindSafeTriangle {
     public static HashMap<Double, double[][]> triangles = new HashMap<>();
 
     public static void findSafeTri(ArrayList<double[]> points ){
+        System.out.println("finding safe triangle : ");
         double max_area = 0;
         if(points.size() >= 3){
             double x1,y1,x2,y2,x3,y3;
@@ -53,7 +54,7 @@ public class FindSafeTriangle {
                 }
                 System.out.println(" ");
                 System.out.println("biggest triangle points: " + Arrays.deepToString(triangles.get(max_area)));
-                System.out.println("triangle area: " + max_area + " units squared");
+                System.out.println("triangle area: " + max_area + " units squared \n");
             }
             else {
                 System.out.println("no triangles formed, all points are co-linear");
