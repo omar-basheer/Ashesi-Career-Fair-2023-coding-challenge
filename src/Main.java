@@ -95,6 +95,7 @@ public class Main {
 
         FindSafeTriangle.findSafeTri(test_array);
 //        FindSafeTriangle.printMap(FindSafeTriangle.triangles);
+//        FindSafePolygon.findSafePolygon(test_array);
         FindSafeSurrounding.findSafeSurr(test_array);
 
 
