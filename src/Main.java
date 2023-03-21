@@ -93,10 +93,10 @@ public class Main {
         test_array.add(floatArr5);
         test_array.add(floatArr6);
 
-        FindSafeTriangle.findSafeTri(test_array);
+//        FindSafeTriangle.findSafeTri(test_array);
 //        FindSafeTriangle.printMap(FindSafeTriangle.triangles);
-//        FindSafePolygon.findSafePolygon(test_array);
-        FindSafeSurrounding.findSafeSurr(test_array);
+        FindSafePolygon.findSafePolygon(test_array);
+//        FindSafeSurrounding.findSafeSurr(test_array);
 
 
 

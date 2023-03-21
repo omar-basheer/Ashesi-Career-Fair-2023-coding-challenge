@@ -19,17 +19,21 @@ public class FindSafePolygon {
                 }
             }
         }
-        System.out.println(Arrays.toString(adj_point1));
-        System.out.println(Arrays.toString(adj_point2));
+        System.out.println("triangle: " + FindSafeTriangle.listToString(triangle));
+        System.out.println("polygon: " + FindSafeTriangle.listToString(polygon));
+        System.out.println("adjacent point 1: " + Arrays.toString(adj_point1));
+        System.out.println("adjacent point 2: " + Arrays.toString(adj_point2));
         System.out.println(" ");
     }
 
     public static void findSafePolygon(ArrayList<double[]> points){
         ArrayList<double[]> polygon = FindSafeTriangle.findSafeTri(points);
+//        System.out.println(FindSafeTriangle.listToString(polygon));
 
         // create collection of all keys from triangles map
         Double[] keys = FindSafeTriangle.triangles.keySet().toArray(new Double[FindSafeTriangle.triangles.size()]);
         for(int i=0; i<keys.length; i++){
+            System.out.println("triangle: "+ i);
             mergeShapes(FindSafeTriangle.triangles.get(keys[i]), polygon);
         }
 
